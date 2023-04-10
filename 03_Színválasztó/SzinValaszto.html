@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Színválosztó oldal</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: white;
+            font-weight: bold;
+        }
+
+        #keveroFelulet {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 250px;
+            height: 250px;
+            padding: 10px;
+            border: 1px solid black;
+            box-shadow: 2px 2px 5px black;
+        }
+
+        #RGBkodMegjelenito {
+            font-size: 200px;
+        }
+
+        #hexaKodMegjelenito {
+            font-size: 200px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--Érték beállító felület-->
+    <div id="keveroFelulet">
+        <label for="redSet">Red(Piros)</label>
+        <input type="range" min="0" max="255" value="0" id="redSet">
+        <p id="redValue">0</p>
+
+        <label for="greenSet">Green(Zöld)</label>
+        <input type="range" min="0" max="255" value="0" id="greenSet">
+        <p id="greenValue">0</p>
+
+        <label for="blueSet">Blue(Kék)</label>
+        <input type="range" min="0" max="255" value="0" id="blueSet">
+        <p id="blueValue">0</p>
+    </div>
+
+    <!--Kód megjelenítő felület-->
+    <div id="RGBkodMegjelenito">rgb(0,0,0)</div>
+    <div id="hexaKodMegjelenito">#000000</div>
+
+    <script>
+        function redValueChange(color) {
+            let newValue = color.target.value;
+            document.querySelector("#redValue").innerHTML = newValue;
+            let szin = SzinKinyero()
+            SzinKevero(szin);
+            szinkodRGB(szin);
+            LathatoBetuszin(szin)
+        }
+
+        function greenValueChange(color) {
+            let newValue = color.target.value;
+            document.querySelector("#greenValue").innerHTML = newValue;
+            let szin = SzinKinyero()
+            SzinKevero(szin);
+            szinkodRGB(szin);
+            LathatoBetuszin(szin)
+        }
+
+        function blueValueChange(color) {
+            let newValue = color.target.value;
+            document.querySelector("#blueValue").innerHTML = newValue;
+            let szin = SzinKinyero()
+            SzinKevero(szin);
+            szinkodRGB(szin);
+            LathatoBetuszin(szin)
+        }
+
+        let redSet = document.querySelector("#redSet");
+        let greenSet = document.querySelector("#greenSet");
+        let blueSet = document.querySelector("#blueSet");
+
+        redSet.addEventListener("input", redValueChange);
+        greenSet.addEventListener("input", greenValueChange);
+        blueSet.addEventListener("input", blueValueChange);
+
+        function SzinKinyero() {
+            let r = document.querySelector("#redValue").innerHTML;
+            let g = document.querySelector("#greenValue").innerHTML;
+            let b = document.querySelector("#blueValue").innerHTML;
+            let kinyertSzin = { red: r, green: g, blue: b };
+            return kinyertSzin;
+        }
+        function SzinKevero(color) {
+            //let setColor = `rgb(${color.red},${color.green},${color.blue})`;
+            let setColor = "rgb(" + color.red + "," + color.green + "," + color.blue + ")";
+            document.body.style.backgroundColor = setColor;
+        }
+
+        function szinkodRGB(color) {
+            document.querySelector("#RGBkodMegjelenito").innerHTML = "rgb(" + color.red + "," + color.green + "," + color.blue + ")";
+        }
+
+        function LathatoBetuszin(color) {
+            if (color.red > 125 || color.green > 125 || color.blue > 125) {
+                document.body.style.color = "black";
+            }
+            else {
+                document.body.style.color = "white";
+            }
+        }
+
+        //Szorgalmi feladat: 
+
+        /*
+        1) a  redValueChange(),greenValueChange() és blueValueChange() függvényeket megírni úgy, hogy 1 paraméterrel
+        megoldható legyen a futtatásuk, minden range mezőre.
+        2) az rgb kód és értékek ismertek, ezek alapján próbáljátok meg kigenerálni a hexa kódot! :)
+        */
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+//Szorgalmi feladat: 
+Szíválasztó:
+
+        	1) a  redValueChange(),greenValueChange() és blueValueChange() függvényeket megírni úgy, hogy 1 paraméterrel
+        	megoldható legyen a futtatásuk, minden range mezőre.
+        	2) az rgb kód és értékek ismertek, ezek alapján próbáljátok meg kigenerálni a hexa kódot! :)
+
+Adminfelület:
+		1) A switch-es gomb eventeket, egy gombra kéne helyezni!
+		2) A feladathoz mellékelt feltöltő formot készítsd el(Kötelezően ajánlott)
+
+
+
+//Kreatív feladat:
+		A klikkelő programból, hozd ki amit tudsz, várom az ötleteket :)
+        

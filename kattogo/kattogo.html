@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klikkelo</title>
+    <style>
+        body{
+            background-color: antiquewhite;
+        }
+        #ugraloFelirat{
+            position:absolute;
+            top:0px;
+            left:0px;
+            width:100px;
+            padding:30px;
+            font-size:16px;
+            background-color: rgba(0,0,0,0.6);
+            text-align: center;
+            border-radius: 50px;
+            box-shadow: 3px 3px 5px black;
+        }
+        input{
+            border-radius: 25px;
+            width: 50px;
+        }
+        #szamlalo{
+            color:white;
+            background-color: rgba(0,0,0,0.8);
+            text-align: center;
+            position: absolute;
+            top:0px;
+            left:50%;
+            transform: translate(-50%);
+            width:50px;
+            border-bottom-left-radius:25px; 
+            border-bottom-right-radius:25px; 
+        }
+        #rosszSzamlalo{
+            color:red;
+            background-color: purple;
+            text-align: center;
+            position: absolute;
+            bottom:0px;
+            left:50%;
+            transform: translate(-50%);
+            width:50px;
+            border-top-left-radius:25px; 
+            border-top-right-radius:25px; 
+        }
+        #ures{
+            width:0px;
+            height:0px;
+            background-color: white;
+            position: fixed;
+            top:40%;
+            left: 40%;
+        }
+    </style>
+</head>
+<body>
+    <!--Készíts egy div elemet az oldalra, és akárhányszor rákattinunk, a weboldal egy másik pontján jelenjen meg!-->
+    <div id="ugraloFelirat">
+        <label for="kerdes">Mi az asztal, de nem szék?</label><br>
+        <input type="password" placeholder="???" required id="jelszo"></input>
+        <button id="gomb">gomb</button>
+        <div id="ures"></div>
+    </div>
+    <div id="szamlalo">0</div>
+    <div id="rosszSzamlalo">0</div>
+    <script>
+        gomb.addEventListener("click", ugras);
+
+        function ugras() {
+            let jelszo = document.getElementById("jelszo").value;
+
+            if (jelszo === "asztal") {
+                let randomTopErtek = Math.round(Math.random() * 300);
+               let randomLeftErtek = Math.round(Math.random() * 1700);
+                let elem = document.querySelector("#ugraloFelirat");
+                let elem2= document.querySelector("#ures");
+                elem.style.top = randomTopErtek + "px";
+                elem.style.left = randomLeftErtek + "px";
+                elem.style.backgroundColor= "green";
+                elem2.style.backgroundImage="url('agy.jpg')"
+                elem2.style.width="500px";
+                elem2.style.height="400px";
+                elem2.style.transform = "rotate(360deg)"; 
+               elem2.style.transitionDuration= "5s";
+
+                let klikkSzam = Number(document.querySelector("#szamlalo").innerHTML) + 1;
+                document.querySelector("#szamlalo").innerHTML = klikkSzam;
+            }
+            else{
+                let elem2=document.querySelector("#ures");
+                elem2.style.width="600px";
+                elem2.style.height="350px";
+                elem2.style.backgroundImage="url('szek.jpg')";
+               elem2.style.transform = "rotate(360deg)"; 
+               elem2.style.transitionDuration= "5s";
+               let klikkSzam = Number(document.querySelector("#rosszSzamlalo").innerHTML) + 1;
+                document.querySelector("#rosszSzamlalo").innerHTML = klikkSzam;
+            }
+        }
+    </script>
+</body>
+</html>
